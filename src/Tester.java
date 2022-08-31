@@ -8,6 +8,10 @@ public class Tester {
 		k.closeAccount(6);
 		System.out.println(k.checkBalance(5));
 		System.out.println(k.checkBalance(6));
+		System.out.println(k.checkBalance(7));
+		
+		System.out.println(k.hasAccount(5));
+		System.out.println(k.hasAccount(7));
 
 	}
 

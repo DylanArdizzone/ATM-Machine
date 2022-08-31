@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.text.DecimalFormat;
 
 public class ATM {
 	private HashMap<Integer, Double> accounts;
@@ -16,14 +17,27 @@ public class ATM {
 	}
 	
 	public void closeAccount(Integer accNum) {
-		accounts.remove(accNum);
+		if(accounts.get(accNum) == 0.0) {
+			accounts.put(accNum, null);
+			accounts.remove(accNum);
+		}
+	}
+	
+	public boolean hasAccount(Integer accNum) {
+		if(accounts.containsKey(accNum)) {
+			return true;
+		}
+		return false;
 	}
 	
 	public double checkBalance(Integer accNum) {
 		if(accounts.get(accNum) == null) {
 			return 0.0;
 		}
-		return accounts.get(accNum);
+		DecimalFormat numberFormat = new DecimalFormat("#.00");
+		String hhh = numberFormat.format(accounts.get(accNum));
+		double bal = Double.parseDouble(hhh);
+		return bal;
 	}
 	
 	public boolean depositMoney(Integer accNum, double deposit) {
